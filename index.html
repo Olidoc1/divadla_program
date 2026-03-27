@@ -382,6 +382,80 @@
       color: var(--text-muted);
     }
 
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem 1rem;
+      padding: 0.65rem 0 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 0.25rem;
+      font-size: 0.85rem;
+    }
+
+    .filter-bar label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .filter-bar input[type="checkbox"] {
+      width: 1rem;
+      height: 1rem;
+      accent-color: var(--dsb-dark);
+      cursor: pointer;
+    }
+
+    .filter-select {
+      padding: 0.35rem 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+      font-size: 0.85rem;
+      color: var(--text);
+      max-width: 100%;
+    }
+
+    .filter-venue-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+      flex: 1 1 200px;
+      min-width: 0;
+    }
+
+    .filter-venue-wrap input {
+      flex: 1 1 160px;
+      min-width: 120px;
+      padding: 0.35rem 0.55rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    .filter-venue-label {
+      color: var(--text-muted);
+    }
+
+    .filter-reset {
+      padding: 0.35rem 0.65rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .filter-reset:hover {
+      background: #f5f5f5;
+      color: var(--text);
+    }
+
     @media (min-width: 700px) {
       .events-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -404,6 +478,26 @@
         <button class="festival-tab" data-festival="dsb">Divadelni svet Brno 2026</button>
       </div>
       <div class="day-nav" id="dayNav"></div>
+      <div class="filter-bar" id="filterBar">
+        <label><input type="checkbox" id="filterFree"> Pouze zdarma</label>
+        <label><input type="checkbox" id="filterSubtitles"> Titulky / EN friendly</label>
+        <label>
+          Vstupenky
+          <select class="filter-select" id="filterTicket" aria-label="Filtrovat podle vstupenek">
+            <option value="all">Vše</option>
+            <option value="soldout">Vyprodáno</option>
+            <option value="lastfew">Poslední vstupenky</option>
+            <option value="other">Ostatní / neuvedeno</option>
+          </select>
+        </label>
+        <label><input type="checkbox" id="filterHideDj"> Skrýt DJ / koncert</label>
+        <div class="filter-venue-wrap">
+          <span class="filter-venue-label">Místo</span>
+          <input type="text" id="filterVenue" list="venueDatalist" placeholder="Všechna místa nebo část názvu…" autocomplete="off" aria-label="Filtrovat podle místa konání">
+          <datalist id="venueDatalist"></datalist>
+        </div>
+        <button type="button" class="filter-reset" id="filterReset">Zrušit filtry</button>
+      </div>
     </div>
   </header>
   <main>
@@ -555,6 +649,135 @@ const dsbData = [
 
 let currentFestival = "flora";
 let currentDay = "all";
+
+const filters = {
+  freeOnly: false,
+  subtitlesOnly: false,
+  ticketStatus: "all",
+  hideDjConcert: false,
+  venueQuery: ""
+};
+
+function stripDiacritics(s) {
+  return s.normalize("NFD").replace(/\p{M}/gu, "");
+}
+
+function venueMatches(query, venue) {
+  if (!query.trim()) return true;
+  const q = stripDiacritics(query.trim().toLowerCase());
+  const v = stripDiacritics(venue.toLowerCase());
+  return v.includes(q);
+}
+
+function classifyTicket(ticket) {
+  if (!ticket || !String(ticket).trim()) return "other";
+  const t = stripDiacritics(ticket.toLowerCase());
+  if (t.includes("vyprodano")) return "soldout";
+  if (t.includes("posledni")) return "lastfew";
+  return "other";
+}
+
+function hasSubtitlesOrEnglish(e, src) {
+  const tags = (e.tags || []).map(x => stripDiacritics(String(x).toLowerCase()));
+  const desc = stripDiacritics((e.desc || "").toLowerCase());
+  if (src === "flora") {
+    if (tags.some(t => t.includes("english friendly"))) return true;
+    if (desc.includes("titulk")) return true;
+    return false;
+  }
+  if (tags.some(t => t.includes("titulk") || t.includes("expat friendly") || t.includes("en titulky") || t.includes("cz titulky")))
+    return true;
+  if (desc.includes("titulk") || desc.includes("en titulky") || desc.includes("cz titulky")) return true;
+  return false;
+}
+
+function isDjOrConcert(e) {
+  const tags = (e.tags || []).map(x => stripDiacritics(String(x).toLowerCase()));
+  if (tags.some(t => t.includes("dj set") || t === "dj set")) return true;
+  if (tags.some(t => t.includes("koncert") || t === "koncert")) return true;
+  return false;
+}
+
+function passesFilters(e) {
+  const src = e._src || currentFestival;
+  if (currentFestival !== "combined" && e._src && e._src !== currentFestival) return false;
+
+  if (!venueMatches(filters.venueQuery, e.venue || "")) return false;
+
+  if (filters.freeOnly && !e.free) return false;
+
+  if (filters.subtitlesOnly && !hasSubtitlesOrEnglish(e, src)) return false;
+
+  if (filters.ticketStatus !== "all") {
+    if (classifyTicket(e.ticket) !== filters.ticketStatus) return false;
+  }
+
+  if (filters.hideDjConcert && isDjOrConcert(e)) return false;
+
+  return true;
+}
+
+function getVenuesForDatalist() {
+  let list;
+  if (currentFestival === "flora") list = floraData;
+  else if (currentFestival === "dsb") list = dsbData;
+  else list = getCombinedData();
+  const set = new Set();
+  for (const e of list) {
+    if (e.venue) set.add(e.venue);
+  }
+  return [...set].sort((a, b) => stripDiacritics(a).localeCompare(stripDiacritics(b), "cs"));
+}
+
+function escapeAttr(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+}
+
+function populateVenueDatalist() {
+  const dl = document.getElementById("venueDatalist");
+  if (!dl) return;
+  const venues = getVenuesForDatalist();
+  dl.innerHTML = venues.map(v => `<option value="${escapeAttr(v)}"></option>`).join("");
+}
+
+function syncFiltersFromDom() {
+  filters.freeOnly = document.getElementById("filterFree").checked;
+  filters.subtitlesOnly = document.getElementById("filterSubtitles").checked;
+  filters.ticketStatus = document.getElementById("filterTicket").value;
+  filters.hideDjConcert = document.getElementById("filterHideDj").checked;
+  filters.venueQuery = document.getElementById("filterVenue").value.trim();
+}
+
+function resetFiltersDom() {
+  document.getElementById("filterFree").checked = false;
+  document.getElementById("filterSubtitles").checked = false;
+  document.getElementById("filterTicket").value = "all";
+  document.getElementById("filterHideDj").checked = false;
+  document.getElementById("filterVenue").value = "";
+  Object.assign(filters, {
+    freeOnly: false,
+    subtitlesOnly: false,
+    ticketStatus: "all",
+    hideDjConcert: false,
+    venueQuery: ""
+  });
+}
+
+function bindFilterControls() {
+  const rerender = () => {
+    syncFiltersFromDom();
+    renderContent();
+  };
+  ["filterFree", "filterSubtitles", "filterHideDj"].forEach(id => {
+    document.getElementById(id).addEventListener("change", rerender);
+  });
+  document.getElementById("filterTicket").addEventListener("change", rerender);
+  document.getElementById("filterVenue").addEventListener("input", rerender);
+  document.getElementById("filterReset").addEventListener("click", () => {
+    resetFiltersDom();
+    renderContent();
+  });
+}
 
 const dayNamesCz = {
   nedele: "neděle", pondeli: "pondělí", utery: "úterý", streda: "středa",
@@ -729,7 +952,7 @@ function renderContent() {
     return;
   }
 
-  const data = currentFestival === "flora" ? floraData : dsbData;
+  const data = (currentFestival === "flora" ? floraData : dsbData).filter(passesFilters);
   const filtered = currentDay === "all" ? data : data.filter(e => e.date === currentDay);
   const headingClass = currentFestival === "flora" ? "flora-heading" : "dsb-heading";
 
@@ -756,7 +979,7 @@ function renderContent() {
 }
 
 function renderCombined() {
-  const all = getCombinedData();
+  const all = getCombinedData().filter(passesFilters);
   const filtered = currentDay === "all" ? all : all.filter(e => e._normDate === currentDay);
 
   const grouped = new Map();
@@ -839,11 +1062,16 @@ document.querySelectorAll(".festival-tab").forEach(tab => {
     tab.classList.add("active");
     currentFestival = tab.dataset.festival;
     currentDay = "all";
+    document.getElementById("filterVenue").value = "";
+    filters.venueQuery = "";
     renderDayNav();
+    populateVenueDatalist();
     renderContent();
   });
 });
 
+bindFilterControls();
+populateVenueDatalist();
 renderDayNav();
 renderContent();
 </script>
