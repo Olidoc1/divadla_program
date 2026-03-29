@@ -356,10 +356,91 @@ main {
   background: #fff3e0;
   border: 1px solid #ffcc80;
   border-radius: var(--radius);
-  padding: 0.75rem 1rem;
   margin-bottom: 1rem;
-  font-size: 0.9rem;
   color: #e65100;
+}
+
+.conflict-summary-toggle {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.conflict-summary-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.conflict-summary-toggle::after {
+  content: "Rozbalit";
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #9c6b1a;
+}
+
+.conflict-summary[open] .conflict-summary-toggle::after {
+  content: "Sbalit";
+}
+
+.conflict-summary-title {
+  font-weight: 700;
+}
+
+.conflict-summary-count {
+  flex-shrink: 0;
+  background: rgba(230, 81, 0, 0.12);
+  color: #b85a00;
+  border-radius: 99px;
+  padding: 0.12rem 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.conflict-pairs {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0 1rem 1rem;
+}
+
+.conflict-pair {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid #ffd8a8;
+  border-radius: 8px;
+  padding: 0.7rem 0.8rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.conflict-pair-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.65rem;
+  align-items: start;
+}
+
+.conflict-pair-row .festival-badge {
+  margin-bottom: 0;
+  margin-top: 0.1rem;
+}
+
+.conflict-pair-info {
+  min-width: 0;
+}
+
+.conflict-pair-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #8d4e00;
+}
+
+.conflict-pair-meta {
+  font-size: 0.82rem;
+  color: #9c6b1a;
+  margin-top: 0.15rem;
 }
 
 .no-events {

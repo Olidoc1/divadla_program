@@ -418,6 +418,15 @@ function renderEventCard(e, festival, extraClass) {
 
 function detectConflicts(events) {
   const conflictSet = new Set();
+  for (const { i, j } of getConflictPairs(events)) {
+    conflictSet.add(i);
+    conflictSet.add(j);
+  }
+  return conflictSet;
+}
+
+function getConflictPairs(events) {
+  const pairs = [];
   for (let i = 0; i < events.length; i++) {
     for (let j = i + 1; j < events.length; j++) {
       const a = events[i], b = events[j];
@@ -428,12 +437,13 @@ function detectConflicts(events) {
       const aEnd = parseEndMinutes(a.time, a.dur || "");
       const bEnd = parseEndMinutes(b.time, b.dur || "");
       if (aStart < bEnd && bStart < aEnd) {
-        conflictSet.add(i);
-        conflictSet.add(j);
+        const flora = a._src === "flora" ? a : b;
+        const dsb = a._src === "dsb" ? a : b;
+        pairs.push({ i, j, flora, dsb });
       }
     }
   }
-  return conflictSet;
+  return pairs;
 }
 
 function renderContent() {
@@ -492,37 +502,42 @@ function renderCombined() {
     const events = grouped.get(date);
     events.sort((a, b) => parseStartMinutes(a.time) - parseStartMinutes(b.time));
     const dayName = events[0].day;
+    const conflictPairs = getConflictPairs(events);
     const conflicts = detectConflicts(events);
-    const dayConflicts = conflicts.size;
+    const dayConflicts = conflictPairs.length;
     totalConflicts += dayConflicts;
 
     html += `<div class="day-section">`;
     html += `<h2 class="day-heading combined-heading">${dayNamesCz[dayName] || dayName} ${date}`;
     if (dayConflicts > 0) {
-      html += ` <span class="conflict-icon">${dayConflicts / 2 | 0} konflikt${(dayConflicts / 2 | 0) > 1 ? "y" : ""}</span>`;
+      html += ` <span class="conflict-icon">${dayConflicts} konflikt${dayConflicts > 1 ? "y" : ""}</span>`;
     }
     html += `</h2>`;
 
     if (dayConflicts > 0) {
-      const floraConf = events.filter((_, i) => conflicts.has(i) && events[i]._src === "flora");
-      const dsbConf = events.filter((_, i) => conflicts.has(i) && events[i]._src === "dsb");
-      const pairs = [];
-      for (let i = 0; i < events.length; i++) {
-        if (!conflicts.has(i)) continue;
-        for (let j = i + 1; j < events.length; j++) {
-          if (!conflicts.has(j)) continue;
-          if (events[i]._src === events[j]._src) continue;
-          const aS = parseStartMinutes(events[i].time), bS = parseStartMinutes(events[j].time);
-          const aE = parseEndMinutes(events[i].time, events[i].dur || "");
-          const bE = parseEndMinutes(events[j].time, events[j].dur || "");
-          if (aS < bE && bS < aE) {
-            const f = events[i]._src === "flora" ? events[i] : events[j];
-            const d = events[i]._src === "dsb" ? events[i] : events[j];
-            pairs.push(`${f.time} ${f.title} (Flora) / ${d.time} ${d.title} (DSB)`);
-          }
-        }
+      html += `<details class="conflict-summary">`;
+      html += `<summary class="conflict-summary-toggle">`;
+      html += `<span class="conflict-summary-title">Casove konflikty mezi festivaly</span>`;
+      html += `<span class="conflict-summary-count">${dayConflicts}</span>`;
+      html += `</summary>`;
+      html += `<div class="conflict-pairs">`;
+      for (const pair of conflictPairs) {
+        html += `<div class="conflict-pair">`;
+        html += `<div class="conflict-pair-row">`;
+        html += `<span class="festival-badge badge-flora">Flora</span>`;
+        html += `<div class="conflict-pair-info">`;
+        html += `<div class="conflict-pair-title">${pair.flora.title}</div>`;
+        html += `<div class="conflict-pair-meta">${pair.flora.time} | ${pair.flora.venue}</div>`;
+        html += `</div></div>`;
+        html += `<div class="conflict-pair-row">`;
+        html += `<span class="festival-badge badge-dsb">DSB</span>`;
+        html += `<div class="conflict-pair-info">`;
+        html += `<div class="conflict-pair-title">${pair.dsb.title}</div>`;
+        html += `<div class="conflict-pair-meta">${pair.dsb.time} | ${pair.dsb.venue}</div>`;
+        html += `</div></div>`;
+        html += `</div>`;
       }
-      html += `<div class="conflict-summary">Casove konflikty: ${pairs.join("; ")}</div>`;
+      html += `</div></details>`;
     }
 
     html += `<div class="events-grid">`;
