@@ -1,0 +1,566 @@
+const floraData = [
+  {date:"pa 15. 5.",day:"patek",time:"19:00-20:00",venue:"S-klub",title:"COME BACK AGAIN",author:"Doris Uhlich, Susanne Kirnbauer",company:"",tags:["English friendly"],free:false,desc:"Jedna z nejoriginalnějších person evropského tance v duetu s legendou rakouského baletu. Doris Uhlich zkoumá, kam lze \u201enapřít energii\u201c primabaleríny Susanne Kirnbauer ve chvíli, kdy již aktivně \u201eneprovozuje taneční kroky\u201c\u2026",notes:"beseda po představení",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/64"},
+  {date:"pa 15. 5.",day:"patek",time:"21:30-02:00",venue:"Konvikt | šapitó",title:"Koubí & Revírník lásky",author:"",company:"",tags:["DJ set"],free:true,desc:"",notes:"",ticket:"",link:"https://divadelniflora.cz/program/65"},
+  {date:"so 16. 5.",day:"sobota",time:"14:00-15:00",venue:"Central",title:"MATKO BOŽÍ, VYŽEŇ PUTINA",author:"Jiří Adámek Austerlitz",company:"",tags:["English friendly"],free:false,desc:"Nepříjemně živá připomínka čtrnáct let staré protestní akce skupiny Pussy Riot v ústředním moskevském chrámu Krista Spasitele. Zvuková reprodukce hudebně-dramatické kompozice režiséra Jiřího Adámka Austerlitze \u2013 pro tři ženské hlasy a orchestr \u2013 oceněná na prestižním festivalu Prix Europa 2025.",notes:"",ticket:"",link:"https://divadelniflora.cz/program/66"},
+  {date:"so 16. 5.",day:"sobota",time:"16:00",venue:"Sedmička",title:"JEJICH SESTRA",author:"Martin Šinkovský",company:"Moravské divadlo Olomouc",tags:[],free:false,desc:"Historický exkurz režiséra Jana Janči, věnovaný opomíjenému životnímu příběhu Zdeny Mašínové \u2013 dcery legionáře a prvorepublikového československého důstojníka popraveného nacisty a sestry nejobdivovanějších i nejodsuzovanějších uprchlíků z komunisty terorizované země.",notes:"",ticket:"vstupenky",link:"https://divadelniflora.cz/program/67"},
+  {date:"so 16. 5.",day:"sobota",time:"19:30",venue:"Moravské divadlo",title:"JAK UDĚLAT DEAL",author:"Wunderbaum, kol.",company:"Schauspielhaus Bochum",tags:["Solidarität"],free:false,desc:"Satira Waltera Barta \u2013 režiséra hitu 28DF Útok psím lejnem \u2013 krátce po premiéře otevírá 29DF s ročníkovým mottem Solidarita. Velký a Krásný festivalový start s Nejlepší show, jakou si lze představit!!! V němčině s českými titulky.",notes:"od 19:00 dramaturgický úvod",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/68"},
+  {date:"so 16. 5.",day:"sobota",time:"22:30-02:00",venue:"Konvikt | šapitó",title:"Chosse Rodriguez",author:"",company:"",tags:["DJ set"],free:true,desc:"",notes:"",ticket:"",link:"https://divadelniflora.cz/program/69"},
+  {date:"ne 17. 5.",day:"nedele",time:"10:30-11:30",venue:"Central",title:"KIOSEK",author:"Anete Melece",company:"Ostružina, z.s., Divadlo Polárka",tags:["pro děti"],free:false,desc:"Paní Olga bydlí v malém kiosku, kde prodává žvýkačky, limonády, časopisy a touží cestovat. Jednoho dne se dá stánek do pohybu \u2013 i s Olgou, která uvízla uvnitř \u2013 a unáší ji neznámo kam\u2026",notes:"",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/70"},
+  {date:"ne 17. 5.",day:"nedele",time:"11:00-12:00",venue:"Konvikt | šapitó",title:"beseda k inscenaci Jak udělat deal",author:"",company:"",tags:["beseda","English friendly"],free:true,desc:"",notes:"",ticket:"",link:"https://divadelniflora.cz/program/71"},
+  {date:"ne 17. 5.",day:"nedele",time:"14:00-15:00",venue:"Central",title:"KIOSEK",author:"Anete Melece",company:"Ostružina, z.s., Divadlo Polárka",tags:["pro děti"],free:false,desc:"Paní Olga bydlí v malém kiosku, kde prodává žvýkačky, limonády, časopisy a touží cestovat. Jednoho dne se dá stánek do pohybu \u2013 i s Olgou, která uvízla uvnitř \u2013 a unáší ji neznámo kam\u2026",notes:"",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/73"},
+  {date:"ne 17. 5.",day:"nedele",time:"16:00-17:05",venue:"S-klub",title:"BETWEEN THE RIVER AND THE SEA",author:"Isabella Sedlak, Yousef Sweid",company:"Maxim Gorki Theater",tags:["English friendly","Solidarität"],free:false,desc:"\u201eJsme úplně normální rodina. Arabsko-palestinsko-židovsko-izraelsko-rakousko-rumunsko-křesťanská rodina.\u201c V Izraeli narozený a v Německu působící palestinský herec Yousef Sweid se ve svém autofikčním stand-upu pohybuje na \u201ehranici mnoha světů a protichůdných entit\u201c. V angličtině s českými titulky.",notes:"beseda po představení",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/74"},
+  {date:"ne 17. 5.",day:"nedele",time:"19:00-21:15",venue:"Moravské divadlo",title:"TOSCA",author:"Giacomo Puccini",company:"Moravské divadlo Olomouc",tags:["English friendly"],free:false,desc:"Pucciniho první veristický opus a jedno z nejslavnějších a nejhranějších děl operního repertoáru. Drama vášnivé, smyslné, milující i žárlivé pěvkyně na pozadí politických intrik napoleonské éry. Gurmánskou hudební hostinu servíruje režisérka Daniela Špinar.",notes:"",ticket:"vstupenky",link:"https://divadelniflora.cz/program/75"},
+  {date:"po 18. 5.",day:"pondeli",time:"17:00-18:20",venue:"S-klub",title:"8 MILIARD LIDÍ HOŘÍ",author:"8lidí",company:"",tags:["English friendly"],free:false,desc:"Olomoucký S-klub se za měkkého zvuku tibetské mísy promění ve vyhřátou saunu, v níž můžete zrelaxovat těla, vyplavit endorfiny, utišit environmentální žal, ale i rozpálit a rozvířit své myšlenky! Žhavé téma globálního oteplování diskutované v parné atmosféře.",notes:"",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/76"},
+  {date:"po 18. 5.",day:"pondeli",time:"20:00-21:40",venue:"Moravské divadlo",title:"MŮJ BOJ. ZAMILOVANÝ MUŽ",author:"Karl Ove Knausgård",company:"Divadlo Na zábradlí",tags:["English friendly"],free:false,desc:"\u201eLiterární striptýz\u201c nebo \u201eknižní Událost 21. století\u201c? Obsáhlý román Karla Oveho Knausgårda vzbudil nadšení i odpor a stal se světovým bestsellerem. Druhý díl neúprosně obnažené reality show na scéně českého Divadla roku.",notes:"od 19:30 dramaturgický úvod",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/77"},
+  {date:"po 18. 5.",day:"pondeli",time:"22:00-01:30",venue:"Konvikt | šapitó",title:"Don K",author:"",company:"",tags:["DJ set"],free:true,desc:"",notes:"",ticket:"",link:"https://divadelniflora.cz/program/78"},
+  {date:"ut 19. 5.",day:"utery",time:"11:00-12:00",venue:"Konvikt | šapitó",title:"beseda k inscenaci Můj boj. Zamilovaný muž",author:"",company:"",tags:["beseda"],free:true,desc:"",notes:"",ticket:"",link:"https://divadelniflora.cz/program/79"},
+  {date:"ut 19. 5.",day:"utery",time:"12:15-13:15",venue:"Konvikt | šapitó",title:"beseda k inscenaci 8 miliard lidí hoří",author:"",company:"",tags:["beseda"],free:true,desc:"",notes:"",ticket:"",link:"https://divadelniflora.cz/program/80"},
+  {date:"ut 19. 5.",day:"utery",time:"17:00-18:00",venue:"Central",title:"GEO",author:"Temporary Collective",company:"",tags:["English friendly"],free:false,desc:"Mnohovrstevnatá performance tanečnice Terezy Ondrové, která vzniká v tvůrčí symbióze s režisérkou Petrou Tejnorovou, je svébytnou výpovědí stran privátní historie a \u201epaměti těla\u201c, ale i historie konkrétního místa a geologických procesů.",notes:"beseda po představení",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/81"},
+  {date:"ut 19. 5.",day:"utery",time:"19:30",venue:"Moravské divadlo",title:"BOŘINY ZA BŘEHEM",author:"Miroslav Krobot, Lubomír Smékal",company:"Moravské divadlo Olomouc",tags:[],free:false,desc:"Nepatetický hold hospůdce Bořiny na břehu Moravské Sázavy a slavnému zábřežskému rodákovi Janu Eskymo Welzlovi \u2013 dobrodruhovi, jenž jako lovec kožešin prožil tři desítky let na nehostinných Novosibiřských ostrovech a drsném kanadském Yukonu.",notes:"",ticket:"vstupenky",link:"https://divadelniflora.cz/program/82"},
+  {date:"st 20. 5.",day:"streda",time:"17:00-18:05",venue:"S-klub",title:"DANCE IS NOT FOR US",author:"Omar Rajeh, Maqamat",company:"",tags:["English friendly"],free:false,desc:"Rozjímání libanonského tvůrce nad historií jeho rodného města formovaného krásou, politickými převraty i nepoddajností a vitalitou jeho obyvatel. Zhmotnění vzpomínek prostřednictvím těla, tanec jako výraz odporu.",notes:"beseda po představení",ticket:"",link:"https://divadelniflora.cz/program/83"},
+  {date:"st 20. 5.",day:"streda",time:"20:00-21:00",venue:"Central",title:"MATKO BOŽÍ, VYŽEŇ PUTINA",author:"Jiří Adámek Austerlitz",company:"",tags:["English friendly"],free:true,desc:"Nepříjemně živá připomínka čtrnáct let staré protestní akce skupiny Pussy Riot. Zvuková reprodukce hudebně-dramatické kompozice oceněná na prestižním festivalu Prix Europa 2025. Ve spolupráci s Českým rozhlasem Vltava.",notes:"",ticket:"",link:"https://divadelniflora.cz/program/85"},
+  {date:"st 20. 5.",day:"streda",time:"20:00-21:35",venue:"Moravské divadlo",title:"KRKAVCI",author:"Henry Becque",company:"Dejvické divadlo",tags:["English friendly"],free:false,desc:"Rodinné štěstí, pohoda a finanční zajištění berou za své, když hlava rodiny nečekaně umírá. Příběh čtyř žen, jež se neumí přizpůsobit, očima režiséra Jana Friče. Česká Inscenace roku o bezskrupulóznosti a cynismu moci.",notes:"od 19:30 dramaturgický úvod",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/84"},
+  {date:"st 20. 5.",day:"streda",time:"22:00-01:30",venue:"Konvikt | šapitó",title:"Yungstifi",author:"",company:"",tags:["DJ set"],free:true,desc:"",notes:"",ticket:"",link:"https://divadelniflora.cz/program/86"},
+  {date:"ct 21. 5.",day:"ctvrtek",time:"17:30-19:05",venue:"Moravské divadlo",title:"KRKAVCI",author:"Henry Becque",company:"Dejvické divadlo",tags:["English friendly"],free:false,desc:"Rodinné štěstí, pohoda a finanční zajištění berou za své, když hlava rodiny nečekaně umírá. Příběh čtyř žen, jež se neumí přizpůsobit, očima režiséra Jana Friče. Česká Inscenace roku.",notes:"",ticket:"",link:"https://divadelniflora.cz/program/87"},
+  {date:"ct 21. 5.",day:"ctvrtek",time:"20:00-20:45",venue:"S-klub",title:"RELEASE THE HOUNDS",author:"Adam Russell-Jones",company:"",tags:["English friendly","Solidarität"],free:false,desc:"Nespoutaná jevištní extáze, inspirovaná vyčerpávajícími tanečními maratony z časů Velké hospodářské krize. Premiérové tuzemské vystoupení vycházející hvězdy světové taneční scény.",notes:"beseda po představení",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/88"},
+  {date:"pa 22. 5.",day:"patek",time:"11:00-12:00",venue:"Konvikt | šapitó",title:"beseda k inscenaci Krkavci",author:"",company:"",tags:["beseda"],free:true,desc:"",notes:"",ticket:"",link:"https://divadelniflora.cz/program/89"},
+  {date:"pa 22. 5.",day:"patek",time:"17:00-18:30",venue:"MUO & Central",title:"SLOVÁCI OŽIJÚ. HYMNA PRE 21. STOROČIE",author:"Adam Dragun, Silvia Vollmann, Ivana Gibová",company:"Uhol_92",tags:["SK"],free:false,desc:"Režijní trojlístek si během tří \u201ezastavení\u201c putovní inscenace klade otázky ohledně vztahu ke státním symbolům a národní hrdosti. Tvůrci nápaditě reagují na časté diskuze na téma národní identity.",notes:"",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/90"},
+  {date:"pa 22. 5.",day:"patek",time:"19:30-22:10",venue:"Moravské divadlo",title:"ZLATÉ MĚSTO",author:"Ödön von Horváth, Ivan Buraj",company:"Divadlo v Dlouhé",tags:["English friendly","Solidarität"],free:false,desc:"Scénicky precizní koláž her Ödöna von Horvátha v úpravě a režii Ivana Buraje exponuje peripetie dvou mladých žen usilujících o svobodu ve městě, které se touží vrátit ke \u201estarým zlatým časům\u201c. Metafora zrodu totality.",notes:"od 19:00 dramaturgický úvod",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/91"},
+  {date:"pa 22. 5.",day:"patek",time:"22:00-23:15",venue:"Konvikt | šapitó",title:"Fvck_Kvlt",author:"",company:"",tags:["koncert","SK"],free:true,desc:"\u201eSlušnost změnila jen málo věcí. Ale hudba posouvá svět.\u201c Denis Bango alias Fvck_Kvlt je jednou z nejcharismatičtějších osobností slovenské hudební scény.",notes:"",ticket:"",link:"https://divadelniflora.cz/program/92"},
+  {date:"pa 22. 5.",day:"patek",time:"23:30-02:00",venue:"Konvikt | šapitó",title:"Laser Hazer",author:"",company:"",tags:["DJ set"],free:true,desc:"",notes:"",ticket:"",link:"https://divadelniflora.cz/program/93"},
+  {date:"so 23. 5.",day:"sobota",time:"11:00-12:30",venue:"MUO & Central",title:"SLOVÁCI OŽIJÚ. HYMNA PRE 21. STOROČIE",author:"Adam Dragun, Silvia Vollmann, Ivana Gibová",company:"Uhol_92",tags:["SK"],free:false,desc:"Režijní trojlístek si během tří \u201ezastavení\u201c putovní inscenace klade otázky ohledně vztahu ke státním symbolům a národní hrdosti.",notes:"",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/94"},
+  {date:"so 23. 5.",day:"sobota",time:"13:30-14:30",venue:"Konvikt | šapitó",title:"beseda k inscenaci Zlaté město",author:"",company:"",tags:["beseda"],free:true,desc:"",notes:"",ticket:"",link:"https://divadelniflora.cz/program/95"},
+  {date:"so 23. 5.",day:"sobota",time:"17:00-18:20",venue:"S-klub",title:"HAPPY END",author:"Alžbeta Vrzgula",company:"Uhol_92",tags:["English friendly","SK"],free:false,desc:"Vtipná, hudebně i herecky hravá produkce plná invenčních odkazů na pop kulturu a mytologii. \u201eŠirokospektrální pohled\u201c na téma žensko-mužských vztahů.",notes:"",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/96"},
+  {date:"so 23. 5.",day:"sobota",time:"20:00-21:35",venue:"Moravské divadlo",title:"OIDIPUS UTOPIA",author:"Michal Hába, podle Sofokla ad.",company:"Činoherní studio Ústí nad Labem",tags:["English friendly","Solidarität"],free:false,desc:"Pátrání po tom, kam se poděly všechny společenské utopie a vize, a jestli nám tak trochu nezmizela i budoucnost. Mrazivá crazytragédie režiséra Michala Háby plná moru i humoru.",notes:"od 19:30 dramaturgický úvod",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/97"},
+  {date:"so 23. 5.",day:"sobota",time:"22:00-23:00",venue:"Konvikt | šapitó",title:"Berlin Manson",author:"",company:"",tags:["koncert","SK"],free:true,desc:"\u201eMladá generace si nemůže dovolit nebýt politická.\u201c Adam Dragun, spoluzakladatel Berlin Manson \u2013 bratislavsko-košické synthpunkové kapely.",notes:"",ticket:"",link:"https://divadelniflora.cz/program/98"},
+  {date:"so 23. 5.",day:"sobota",time:"23:15-02:00",venue:"Konvikt | šapitó",title:"René",author:"",company:"",tags:["DJ set"],free:true,desc:"",notes:"",ticket:"",link:"https://divadelniflora.cz/program/99"},
+  {date:"ne 24. 5.",day:"nedele",time:"11:00-11:45",venue:"Café nacucky!",title:"beseda k inscenaci Oidipus Utopia",author:"",company:"",tags:["beseda"],free:true,desc:"",notes:"",ticket:"",link:"https://divadelniflora.cz/program/100"},
+  {date:"ne 24. 5.",day:"nedele",time:"12:00-13:00",venue:"Café nacucky!",title:"beseda k inscenacím Slováci ožijú a Happy End",author:"",company:"",tags:["beseda"],free:true,desc:"",notes:"",ticket:"",link:"https://divadelniflora.cz/program/101"},
+  {date:"ne 24. 5.",day:"nedele",time:"14:00-15:15",venue:"S-klub",title:"PIPI DLOUHÁ PUNČOCHA",author:"Astrid Lindgrenová",company:"Činoherní studio Ústí nad Labem",tags:["pro děti"],free:false,desc:"Pipilota Citrónie Cimprlína Mucholapka Dlouhá punčocha \u2013 kdo by ji neznal? Tak trochu koncert a rozhodně podívaná pro všechny, kdo jsou nebo někdy byli dětmi. Od 7 let.",notes:"",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/102"},
+  {date:"ne 24. 5.",day:"nedele",time:"16:00-17:20",venue:"Divadlo nacucky!",title:"FLORA",author:"Silvia Vollmann",company:"Divadlo nacucky!",tags:[],free:false,desc:"Pavla Dostálová a Jakub Spišák se vydávají \u201epo stopách\u201c Květoslavy Viestové \u2013 olomoucké rodačky, která stála v čele největší bratislavské odbojové skupiny během 2. světové války, a první olomoucké Flory.",notes:"beseda po představení",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/103"},
+  {date:"ne 24. 5.",day:"nedele",time:"19:30-21:00",venue:"Central",title:"KNIHA KRVE",author:"Kim de l'Horizon",company:"Bühnen Bern",tags:["Solidarität"],free:false,desc:"Adaptace knižního debutu, jenž \u201eotřese vašimi předsudky a jistotami\u201c. Strhující výpověď herečky Lucie Kotikové, \u201eHerecký talent roku\u201c. V němčině s českými titulky.",notes:"beseda po představení",ticket:"Předprodej 20. 4. | 9:00",link:"https://divadelniflora.cz/program/104"}
+];
+
+const dsbData = [
+  {date:"29. 3.",day:"nedele",time:"19:00",dur:"100 min, bez přestávky",venue:"Divadlo Reduta",title:"DSB+: Lhářky",company:"Divadlo Letí",tags:[],desc:"Lektorský úvod, 30 min před představením",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/dsb-lharky/"},
+  {date:"14. 4.",day:"utery",time:"19:00",dur:"90 min",venue:"Janáčkovo divadlo",title:"Postavy mizejícího světa",company:"Nederlands Dans Theater - NDT 1 & Complicité",tags:[],desc:"Dramaturgický úvod 30 min před představením + diskuse po představení",ticket:"",link:"https://divadelnisvet.cz/2026/14-4-postavy-mizejiciho-sveta/"},
+  {date:"15. 4.",day:"streda",time:"19:00",dur:"90 min",venue:"Janáčkovo divadlo",title:"Postavy mizejícího světa",company:"Nederlands Dans Theater - NDT 1 & Complicité",tags:[],desc:"Dramaturgický úvod 30 min před představením",ticket:"",link:"https://divadelnisvet.cz/2026/15-4-postavy-mizejiciho-sveta/"},
+  {date:"9. 5.",day:"sobota",time:"15:00",dur:"90 min., bez přestávky",venue:"Nová budova SND, Štúdio",title:"Duchové jsou také jen lidé",company:"Slovenské národné divadlo",tags:[],desc:"",ticket:"Poslední 2 vstupenky",link:"https://divadelnisvet.cz/2026/duchove-jsou-take-jen-lide/"},
+  {date:"12. 5.",day:"utery",time:"19:00",dur:"90 min",venue:"Janáčkovo divadlo",title:"Folkå, SAABA",company:"Nederlands Dans Theater - NDT 2",tags:[],desc:"Jeden večer dvě choreografie.",ticket:"",link:"https://divadelnisvet.cz/2026/folka-saaba/"},
+  {date:"13. 5.",day:"streda",time:"18:00",dur:"70 min, bez přestávky",venue:"Divadlo Radost",title:"Píšu ti, píšu\u2026",company:"Divadlo Radost",tags:[],desc:"",ticket:"Posledních 9 vstupenek",link:"https://divadelnisvet.cz/2026/pisu-ti-pisu/"},
+  {date:"13. 5.",day:"streda",time:"19:00",dur:"135 min, s přestávkou",venue:"Městské divadlo Brno \u2013 Činoherní scéna",title:"Negativy sněhu: Wetzler, Vrba, Schulman, Lux",company:"Divadlo Jána Palárika v Trnave",tags:["EN TITULKY","CZ TITULKY"],desc:"Dramaturgický úvod + diskuse po představení CZ a EN TITULKY",ticket:"",link:"https://divadelnisvet.cz/2026/negativy-snehu-wetzler-vrba-schulman-lux/"},
+  {date:"14. 5.",day:"ctvrtek",time:"10:00",dur:"",venue:"Divadlo Polárka \u2013 Velká scéna",title:"Stalo se mi tělo",company:"Divadlo Polárka",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/stalo-se-mi-telo/"},
+  {date:"14. 5.",day:"ctvrtek",time:"18:00",dur:"90 min, bez přestávky",venue:"Divadlo Husa na provázku \u2013 provázek.sál",title:"Darwin & co.",company:"Divadlo Husa na provázku",tags:["EN TITULKY"],desc:"EN TITULKY",ticket:"",link:"https://divadelnisvet.cz/2026/darwin-co/"},
+  {date:"14. 5.",day:"ctvrtek",time:"18:00",dur:"90 min, bez přestávky",venue:"Divadlo Radost \u2013 Velký sál",title:"Sen noci svatojánské",company:"Divadlo Radost",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/sen-noci-svatojanske/"},
+  {date:"14. 5.",day:"ctvrtek",time:"20:00",dur:"105 min, bez přestávky",venue:"Mahenovo divadlo",title:"Divoká kachna",company:"Činohra NdB",tags:["EN TITULKY"],desc:"Dramaturgický úvod 30 min před představením EN TITULKY",ticket:"",link:"https://divadelnisvet.cz/2026/divoka-kachna/"},
+  {date:"14. 5.",day:"ctvrtek",time:"20:00",dur:"60 min. bez přestávky",venue:"Městské divadlo Brno \u2013 Činoherní scéna",title:"Mystical Self",company:"Lenka Vagnerová & co.",tags:["EXPAT FRIENDLY"],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/mystical-self/"},
+  {date:"15. 5.",day:"patek",time:"15:00 - 22:00",dur:"",venue:"foyer Janáčkova divadla a piazzetta",title:"Festivalový otevřený dům",company:"",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/festivalovy-otevreny-dum-15-05/"},
+  {date:"15. 5.",day:"patek",time:"15:00",dur:"70 min., bez přestávky",venue:"Divadlo Radost \u2013 Malá scéna",title:"Táta už nemůže!",company:"Ufftenživot",tags:[],desc:"",ticket:"Posledních 14 vstupenek",link:"https://divadelnisvet.cz/2026/tata-uz-nemuze/"},
+  {date:"15. 5.",day:"patek",time:"15:30",dur:"",venue:"Divadlo Polárka \u2013 Malá scéna",title:"Grandhotel pocitů",company:"Divadlo Polárka",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/grandhotel-pocitu/"},
+  {date:"15. 5.",day:"patek",time:"17:00",dur:"70 min., bez přestávky",venue:"Divadlo Radost \u2013 Malá scéna",title:"Táta už nemůže!",company:"Ufftenživot",tags:[],desc:"",ticket:"Poslední 1 vstupenka",link:"https://divadelnisvet.cz/2026/tata-uz-nemuze-2/"},
+  {date:"15. 5.",day:"patek",time:"17:30",dur:"",venue:"Divadlo Polárka \u2013 Malá scéna",title:"Grandhotel pocitů",company:"Divadlo Polárka",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/grandhotel-pocitu-2/"},
+  {date:"15. 5.",day:"patek",time:"18:00",dur:"70 min. bez přestávky",venue:"Divadlo na Orlí",title:"Charlie",company:"Hodworks",tags:["EXPAT FRIENDLY"],desc:"Dramaturgický úvod + diskuse po představení.",ticket:"",link:"https://divadelnisvet.cz/2026/charlie/"},
+  {date:"15. 5.",day:"patek",time:"19:00",dur:"170 min.",venue:"Městské divadlo Brno \u2013 Činoherní scéna",title:"Rozum a cit",company:"Městské divadlo Brno",tags:["EN TITULKY"],desc:"EN TITULKY",ticket:"Poslední 2 vstupenky",link:"https://divadelnisvet.cz/2026/rozum-a-cit/"},
+  {date:"15. 5.",day:"patek",time:"19:30",dur:"100 min, bez přestávky",venue:"Divadlo Husa na provázku \u2013 provázek.sklep",title:"Moje kopyta rozryla už zem",company:"Divadlo Husa na provázku",tags:["EN TITULKY"],desc:"Dramaturgický úvod před představením EN TITULKY",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/moje-kopyta-rozryla-uz-zem/"},
+  {date:"16. 5.",day:"sobota",time:"10:00 - 17:00",dur:"",venue:"foyer Janáčkova divadla a piazzetta",title:"Festivalový otevřený dům",company:"",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/festivalovy-otevreny-dum-16-05/"},
+  {date:"16. 5.",day:"sobota",time:"15:00",dur:"45 min, bez přestávky",venue:"Divadlo Husa na provázku \u2013 provázek.sklep",title:"Soudružky s kroužky",company:"Alfred ve dvoře",tags:["EXPAT FRIENDLY"],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/soudruzky-s-krouzky/"},
+  {date:"16. 5.",day:"sobota",time:"15:00",dur:"45 min, bez přestávky",venue:"Divadlo Polárka \u2013 Velká scéna",title:"Akce Rosomák",company:"Naivní divadlo Liberec",tags:[],desc:"",ticket:"Posledních 8 vstupenek",link:"https://divadelnisvet.cz/2026/akce-rosomak/"},
+  {date:"16. 5.",day:"sobota",time:"16:00",dur:"60 min",venue:"Foyer - Janáčkovo divadlo",title:"Velká rytířská výzva",company:"dílna pro děti \u2013 Má vlast",tags:[],desc:"Pouze se vstupenkou na představení Má vlast",ticket:"",link:"https://divadelnisvet.cz/2026/velka-rytirska-vyzva-2/"},
+  {date:"16. 5.",day:"sobota",time:"16:00",dur:"135 min., bez přestávky",venue:"Městské divadlo Brno \u2013 Hudební scéna",title:"Nosorožec",company:"Slovenské národné divadlo",tags:["EN TITULKY"],desc:"Dramaturgický úvod + diskuse po představení. EN TITULKY",ticket:"",link:"https://divadelnisvet.cz/2026/nosorozec/"},
+  {date:"16. 5.",day:"sobota",time:"17:00",dur:"45 min, bez přestávky",venue:"Divadlo Polárka \u2013 Velká scéna",title:"Akce Rosomák",company:"Naivní divadlo Liberec",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/akce-rosomak-2/"},
+  {date:"16. 5.",day:"sobota",time:"17:00",dur:"50 min., bez přestávky",venue:"Divadlo na Orlí",title:"Slip Grip",company:"Jitka Sara Páníková",tags:["EXPAT FRIENDLY"],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/slip-grip/"},
+  {date:"16. 5.",day:"sobota",time:"18:00",dur:"45 min, bez přestávky",venue:"Divadlo Husa na provázku \u2013 provázek.sklep",title:"Soudružky s kroužky",company:"Alfred ve dvoře",tags:["EXPAT FRIENDLY"],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/soudruzky-s-krouzky-4/"},
+  {date:"16. 5.",day:"sobota",time:"19:00",dur:"90 min., s přestávkou",venue:"Mahenovo divadlo",title:"Domeček pro panenky",company:"Plexus polaire",tags:["CZ TITULKY"],desc:"Dramaturgický úvod + diskuse po představení. CZ TITULKY",ticket:"",link:"https://divadelnisvet.cz/2026/domecek-pro-panenky/"},
+  {date:"16. 5.",day:"sobota",time:"19:00",dur:"120 min",venue:"Janáčkovo divadlo",title:"Má vlast",company:"Česká filharmonie, DEKKADANCERS, Divadlo bratří Formanů",tags:[],desc:"Lektorský úvod pro děti + diskuse po představení",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/16-5-ma-vlast/"},
+  {date:"17. 5.",day:"nedele",time:"10:00",dur:"45 min., bez přestávky",venue:"Mahenovo divadlo - Malá scéna",title:"Natura kultura",company:"Nebe Motýlová, Bibi Stevens",tags:[],desc:"",ticket:"Posledních 14 vstupenek",link:"https://divadelnisvet.cz/2026/natura-kultura/"},
+  {date:"17. 5.",day:"nedele",time:"10:00 - 15:00",dur:"",venue:"foyer Janáčkova divadla a piazzetta",title:"Festivalový otevřený dům",company:"",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/festivalovy-otevreny-dum-17-05/"},
+  {date:"17. 5.",day:"nedele",time:"11:00",dur:"45 min, bez přestávky",venue:"Divadlo Husa na provázku \u2013 provázek.sklep",title:"Soudružky s kroužky",company:"Alfred ve dvoře",tags:["EXPAT FRIENDLY"],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/soudruzky-s-krouzky-3/"},
+  {date:"17. 5.",day:"nedele",time:"11:30",dur:"45 min., bez přestávky",venue:"Mahenovo divadlo - Malá scéna",title:"Natura kultura",company:"Nebe Motýlová, Bibi Stevens",tags:[],desc:"",ticket:"Posledních 9 vstupenek",link:"https://divadelnisvet.cz/2026/natura-kultura-2/"},
+  {date:"17. 5.",day:"nedele",time:"14:00",dur:"60 min",venue:"Foyer - Janáčkovo divadlo",title:"Velká rytířská výzva",company:"dílna pro děti \u2013 Má vlast",tags:[],desc:"Pouze se vstupenkou na představení Má vlast",ticket:"Posledních 15 vstupenek",link:"https://divadelnisvet.cz/2026/velka-rytirska-vyzva/"},
+  {date:"17. 5.",day:"nedele",time:"15:00",dur:"45 min, bez přestávky",venue:"Divadlo Husa na provázku \u2013 provázek.sklep",title:"Soudružky s kroužky",company:"Alfred ve dvoře",tags:["EXPAT FRIENDLY"],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/soudruzky-s-krouzky-2/"},
+  {date:"17. 5.",day:"nedele",time:"15:00",dur:"90 min., s přestávkou",venue:"Mahenovo divadlo",title:"Domeček pro panenky",company:"Plexus polaire",tags:["CZ TITULKY"],desc:"Dramaturgický úvod před představením. CZ TITULKY",ticket:"",link:"https://divadelnisvet.cz/2026/domecek-pro-panenky-2/"},
+  {date:"17. 5.",day:"nedele",time:"15:30",dur:"90 min., s přestávkou",venue:"Divadlo Polárka \u2013 Malá scéna",title:"Po.hádkách",company:"kolektiv TMEL",tags:[],desc:"Workshop po představení",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/po-hadkach/"},
+  {date:"17. 5.",day:"nedele",time:"17:00",dur:"65 min., bez přestávky",venue:"Divadlo na Orlí",title:"Proměna",company:"Divadlo Drak",tags:[],desc:"Lektorský úvod před představením + divácká reflexe po představení",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/promena/"},
+  {date:"17. 5.",day:"nedele",time:"17:00",dur:"120 min",venue:"Janáčkovo divadlo",title:"Má vlast",company:"Česká filharmonie, DEKKADANCERS, Divadlo bratří Formanů",tags:[],desc:"Lektorský úvod pro děti",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/17-5-ma-vlast/"},
+  {date:"17. 5.",day:"nedele",time:"19:00",dur:"160 min., s přestávkou",venue:"Městské divadlo Brno \u2013 Činoherní scéna",title:"Nebezpečné známosti",company:"Divadlo F. X. Šaldy",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/nebezpecne-znamosti/"},
+  {date:"18. 5.",day:"pondeli",time:"9:30",dur:"65 min., bez přestávky",venue:"Divadlo na Orlí",title:"Proměna",company:"Divadlo Drak",tags:[],desc:"Dramaturgický úvod před představením + divácká reflexe po představení",ticket:"",link:"https://divadelnisvet.cz/2026/promena-2/"},
+  {date:"18. 5.",day:"pondeli",time:"9:30",dur:"90 min., s přestávkou",venue:"Divadlo Polárka \u2013 Malá scéna",title:"Po.hádkách",company:"kolektiv TMEL",tags:[],desc:"Workshop po představení",ticket:"",link:"https://divadelnisvet.cz/2026/po-hadkach-3/"},
+  {date:"18. 5.",day:"pondeli",time:"10:00",dur:"50 min., bez přestávky",venue:"Divadlo Radost \u2013 Malá scéna",title:"Kawloon: Největší dům na světě",company:"Divadelní skupina FRAS",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/kawloon-nejvetsi-dum-na-svete/"},
+  {date:"18. 5.",day:"pondeli",time:"16:00",dur:"90 min., s přestávkou",venue:"Divadlo Polárka \u2013 Malá scéna",title:"Po.hádkách",company:"kolektiv TMEL",tags:[],desc:"Workshop po představení",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/po-hadkach-2/"},
+  {date:"18. 5.",day:"pondeli",time:"17:00",dur:"50 min., bez přestávky",venue:"Divadlo Radost \u2013 Malá scéna",title:"Kawloon: Největší dům na světě",company:"Divadelní skupina FRAS",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/kawloon-nejvetsi-dum-na-svete-2/"},
+  {date:"18. 5.",day:"pondeli",time:"17:00",dur:"50 min, bez přestávky",venue:"Divadlo Husa na provázku \u2013 provázek.sklep",title:"Korále okolo hrdla",company:"A studio Rubín",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/korale-okolo-hrdla/"},
+  {date:"18. 5.",day:"pondeli",time:"18:00",dur:"95 min., bez přestávky",venue:"Městské divadlo Brno \u2013 Činoherní scéna",title:"Pozdě příchozí",company:"Divadlo Petra Bezruče",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/pozde-prichozi/"},
+  {date:"18. 5.",day:"pondeli",time:"19:00",dur:"145 min, s přestávkou",venue:"Mahenovo divadlo",title:"Heda Gablerová",company:"Národní divadlo",tags:["EN TITULKY"],desc:"Dramaturgický úvod + diskuse po představení. EN TITULKY",ticket:"",link:"https://divadelnisvet.cz/2026/heda-gablerova/"},
+  {date:"18. 5.",day:"pondeli",time:"20:00",dur:"95 min., bez přestávky",venue:"Divadlo Reduta",title:"Krkavci",company:"Dejvické divadlo",tags:["EN TITULKY"],desc:"EN TITULKY",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/krkavci/"},
+  {date:"18. 5.",day:"pondeli",time:"20:00",dur:"50 min., bez přestávky",venue:"Divadlo Husa na provázku \u2013 provázek.sklep",title:"Korále okolo hrdla",company:"A studio Rubín",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/korale-okolo-hrdla-2/"},
+  {date:"19. 5.",day:"utery",time:"17:00",dur:"",venue:"Divadlo Husa na provázku \u2013 provázek.sklep",title:"Neboj, neboj",company:"Studio 60+",tags:[],desc:"",ticket:"Poslední 2 vstupenky",link:"https://divadelnisvet.cz/2026/neboj-neboj/"},
+  {date:"19. 5.",day:"utery",time:"18:00",dur:"50 min., bez přestávky",venue:"Studio Marta",title:"V zrcadlové síni",company:"A studio Rubín",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/v-zrcadlove-sini/"},
+  {date:"19. 5.",day:"utery",time:"18:00",dur:"70 min., bez přestávky",venue:"Divadlo Koráb",title:"Bečva (true crime)",company:"KAM JDEŠ?",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/becva-true-crime/"},
+  {date:"19. 5.",day:"utery",time:"18:30",dur:"90 min. bez přestávky",venue:"Divadlo Husa na provázku \u2013 provázek.sál",title:"Směšná temnota",company:"Jihočeské divadlo",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/smesna-temnota/"},
+  {date:"19. 5.",day:"utery",time:"19:00",dur:"65 min., bez přestávky",venue:"Divadlo na Orlí",title:"Zpěvy Gilgamešovy (Zlomený epos)",company:"Divadelní fakulta JAMU",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/zpevy-gilgamesovy-zlomeny-epos/"},
+  {date:"19. 5.",day:"utery",time:"19:00",dur:"95 min., bez přestávky",venue:"Divadlo Reduta",title:"Krkavci",company:"Dejvické divadlo",tags:["EN TITULKY"],desc:"EN TITULKY",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/krkavci-2/"},
+  {date:"19. 5.",day:"utery",time:"19:00",dur:"90 min",venue:"Šapitó Komárov",title:"Ptačí sněm",company:"Divadlo bratří Formanů",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/19-5-ptaci-snem/"},
+  {date:"19. 5.",day:"utery",time:"19:00",dur:"",venue:"Městské divadlo Brno \u2013 Činoherní scéna",title:"Její pastorkyňa",company:"Městské divadlo Brno",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/jeji-pastorkyna/"},
+  {date:"19. 5.",day:"utery",time:"20:00",dur:"60 min. s přestávkou",venue:"Divadlo Radost - Velká scéna",title:"Maryša Vávrová / Faust",company:"Bažantova loutkařská družina",tags:[],desc:"Diskuse po představení",ticket:"",link:"https://divadelnisvet.cz/2026/marysa-vavrova-faust/"},
+  {date:"19. 5.",day:"utery",time:"21:00",dur:"90 min. bez přestávky",venue:"Divadlo Husa na provázku \u2013 provázek.sál",title:"Směšná temnota",company:"Jihočeské divadlo",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/smesna-temnota-2/"},
+  {date:"20. 5.",day:"streda",time:"15:00",dur:"65 min., bez přestávky",venue:"Café Kaprál",title:"Delikatesa",company:"Divadlo Mikro-teatro",tags:["EXPAT FRIENDLY"],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/delikatesa/"},
+  {date:"20. 5.",day:"streda",time:"17:30",dur:"65 min., bez přestávky",venue:"Café Kaprál",title:"Delikatesa",company:"Divadlo Mikro-teatro",tags:["EXPAT FRIENDLY"],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/delikatesa-6/"},
+  {date:"20. 5.",day:"streda",time:"18:00",dur:"55 min., bez přestávky",venue:"Divadlo Radost \u2013 Velký sál",title:"Sněhová královna a černé zrcadlo",company:"Bratislavské bábkové divadlo",tags:[],desc:"Lektorský úvod před představením",ticket:"",link:"https://divadelnisvet.cz/2026/snehova-kralovna-a-cerne-zrcadlo/"},
+  {date:"20. 5.",day:"streda",time:"18:00",dur:"40 min., bez přestávky",venue:"Studio Marta",title:"Smoke and Mirrors",company:"420PEOPLE",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/smoke-and-mirrors/"},
+  {date:"20. 5.",day:"streda",time:"19:00",dur:"90 min",venue:"Šapitó Komárov",title:"Ptačí sněm",company:"Divadlo bratří Formanů",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/20-5-ptaci-snem/"},
+  {date:"20. 5.",day:"streda",time:"19:00",dur:"110 min., bez přestávky",venue:"Divadlo Reduta",title:"Faidra (Zatmění)",company:"Činohra NdB",tags:[],desc:"Dramaturgický úvod + diskuse po představení",ticket:"",link:"https://divadelnisvet.cz/2026/faidra-zatmeni/"},
+  {date:"20. 5.",day:"streda",time:"20:00",dur:"40 min., bez přestávky",venue:"Studio Marta",title:"Smoke and Mirrors",company:"420PEOPLE",tags:["EXPAT FRIENDLY"],desc:"",ticket:"Poslední 3 vstupenky",link:"https://divadelnisvet.cz/2026/smoke-and-mirrors-2/"},
+  {date:"20. 5.",day:"streda",time:"20:00",dur:"50 min. bez přestávky",venue:"Co.labs - Velký sál",title:"PNEU",company:"Viktor Černický",tags:["EXPAT FRIENDLY"],desc:"Dramaturgický úvod před představením.",ticket:"",link:"https://divadelnisvet.cz/2026/pneu/"},
+  {date:"21. 5.",day:"ctvrtek",time:"10:00",dur:"90 min., bez přestávky",venue:"Divadlo Husa na provázku \u2013 provázek.sál",title:"První rána kapitána",company:"Vzlet",tags:[],desc:"Diskuse po představení",ticket:"",link:"https://divadelnisvet.cz/2026/prvni-rana-kapitana/"},
+  {date:"21. 5.",day:"ctvrtek",time:"15:00",dur:"65 min., bez přestávky",venue:"Café Kaprál",title:"Delikatesa",company:"Divadlo Mikro-teatro",tags:["EXPAT FRIENDLY"],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/delikatesa-5/"},
+  {date:"21. 5.",day:"ctvrtek",time:"17:30",dur:"65 min., bez přestávky",venue:"Café Kaprál",title:"Delikatesa",company:"Divadlo Mikro-teatro",tags:["EXPAT FRIENDLY"],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/delikatesa-4/"},
+  {date:"21. 5.",day:"ctvrtek",time:"18:00",dur:"90 min., bez přestávky",venue:"Divadlo Husa na provázku \u2013 provázek.sál",title:"První rána kapitána",company:"Vzlet",tags:[],desc:"Diskuse po představení",ticket:"",link:"https://divadelnisvet.cz/2026/prvni-rana-kapitana-2/"},
+  {date:"21. 5.",day:"ctvrtek",time:"19:00",dur:"100 min., bez přestávky",venue:"Divadlo Reduta",title:"Můj boj. Zamilovaný muž",company:"Divadlo Na zábradlí",tags:[],desc:"Dramaturgický úvod před představením",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/muj-boj-zamilovany-muz/"},
+  {date:"21. 5.",day:"ctvrtek",time:"20:00",dur:"60 min., bez přestávky",venue:"Co.labs - Velký sál",title:"DVACETjedna",company:"Spitfire Company",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/dvacetjedna/"},
+  {date:"21. 5.",day:"ctvrtek",time:"20:00",dur:"75 min., bez přestávky",venue:"Studio Marta",title:"Panelák",company:"Divadelní fakulta JAMU",tags:["EXPAT FRIENDLY"],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/panelak/"},
+  {date:"22. 5.",day:"patek",time:"15:00",dur:"65 min., bez přestávky",venue:"Café Kaprál",title:"Delikatesa",company:"Divadlo Mikro-teatro",tags:["EXPAT FRIENDLY"],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/delikatesa-3/"},
+  {date:"22. 5.",day:"patek",time:"17:30",dur:"65 min., bez přestávky",venue:"Café Kaprál",title:"Delikatesa",company:"Divadlo Mikro-teatro",tags:["EXPAT FRIENDLY"],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/delikatesa-2/"},
+  {date:"22. 5.",day:"patek",time:"18:00",dur:"",venue:"Co.labs - Velký sál",title:"(ID)ENTITA",company:"Divadlo Aldente",tags:[],desc:"Dramaturgický úvod 30 min před představením",ticket:"",link:"https://divadelnisvet.cz/2026/identita/"},
+  {date:"22. 5.",day:"patek",time:"19:00",dur:"110 min., bez přestávky",venue:"Divadlo Reduta",title:"Paní Dallowayová",company:"Divadlo Na zábradlí",tags:["EN TITULKY"],desc:"EN TITULKY",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/pani-dallowayova/"},
+  {date:"22. 5.",day:"patek",time:"19:00",dur:"90 min",venue:"Šapitó Komárov",title:"Ptačí sněm",company:"Divadlo bratří Formanů",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/22-5-ptaci-snem/"},
+  {date:"22. 5.",day:"patek",time:"20:00",dur:"75 min., bez přestávky",venue:"Studio Marta",title:"Perníkář",company:"Studio G",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/pernikar/"},
+  {date:"23. 5.",day:"sobota",time:"10:30",dur:"100min., bez přestávky",venue:"Divadlo Polárka \u2013 Velká scéna",title:"Hledat Robinsona",company:"Tání",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/hledat-robinsona/"},
+  {date:"23. 5.",day:"sobota",time:"17:00",dur:"90 min., bez přestávky",venue:"Klub zastupitelů města Brna",title:"We Love Shooting",company:"8lidí",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/we-love-shooting/"},
+  {date:"23. 5.",day:"sobota",time:"18:00",dur:"180 min., s přestávkou",venue:"Co.labs - Velký sál",title:"Amadoka",company:"Divadlo X10",tags:["EN TITULKY"],desc:"Dramaturgický úvod + diskuse po představení. EN TITULKY",ticket:"",link:"https://divadelnisvet.cz/2026/amadoka/"},
+  {date:"23. 5.",day:"sobota",time:"19:00",dur:"90 min",venue:"Šapitó Komárov",title:"Ptačí sněm",company:"Divadlo bratří Formanů",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/23-5-ptaci-snem/"},
+  {date:"23. 5.",day:"sobota",time:"19:30",dur:"90 min., bez přestávky",venue:"Klub zastupitelů města Brna",title:"We Love Shooting",company:"8lidí",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/we-love-shooting-2/"},
+  {date:"24. 5.",day:"nedele",time:"15:00",dur:"90 min",venue:"Šapitó Komárov",title:"Ptačí sněm",company:"Divadlo bratří Formanů",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/24-5-ptaci-snem-2/"},
+  {date:"24. 5.",day:"nedele",time:"16:00",dur:"180 min., s přestávkou",venue:"Co.labs - Velký sál",title:"Amadoka",company:"Divadlo X10",tags:["EN TITULKY"],desc:"Dramaturgický úvod. EN TITULKY",ticket:"",link:"https://divadelnisvet.cz/2026/amadoka-2/"},
+  {date:"24. 5.",day:"nedele",time:"17:30",dur:"45 min., bez přestávky",venue:"Divadlo Polárka \u2013 Velká scéna",title:"Brr & Skrr",company:"Khwoshch",tags:["EXPAT FRIENDLY"],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/brr-skrr/"},
+  {date:"24. 5.",day:"nedele",time:"19:00",dur:"90 min",venue:"Šapitó Komárov",title:"Ptačí sněm",company:"Divadlo bratří Formanů",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/24-5-ptaci-snem/"},
+  {date:"13. 6.",day:"sobota",time:"11:30",dur:"",venue:"Otáčivé hlediště Český Krumlov",title:"Herkules",company:"Jihočeské divadlo",tags:[],desc:"",ticket:"",link:"https://divadelnisvet.cz/2026/herkules/"},
+  {date:"19. 6.",day:"patek",time:"14:00",dur:"",venue:"Wiener Festwochen",title:"Parsifal",company:"Opera Ballet Vlaanderen, ORF Radio-Sinfonieorchester Wien, Arnold Schoenberg Chor",tags:[],desc:"",ticket:"Vyprodáno",link:"https://divadelnisvet.cz/2026/parsifal/"}
+];
+
+let currentFestival = "flora";
+let currentDay = "all";
+
+const filters = {
+  freeOnly: false,
+  subtitlesOnly: false,
+  ticketStatus: "all",
+  hideDjConcert: false,
+  venueQuery: ""
+};
+
+function stripDiacritics(s) {
+  return s.normalize("NFD").replace(/\p{M}/gu, "");
+}
+
+function venueMatches(query, venue) {
+  if (!query.trim()) return true;
+  const q = stripDiacritics(query.trim().toLowerCase());
+  const v = stripDiacritics(venue.toLowerCase());
+  return v.includes(q);
+}
+
+function classifyTicket(ticket) {
+  if (!ticket || !String(ticket).trim()) return "other";
+  const t = stripDiacritics(ticket.toLowerCase());
+  if (t.includes("vyprodano")) return "soldout";
+  if (t.includes("posledni")) return "lastfew";
+  return "other";
+}
+
+function hasSubtitlesOrEnglish(e, src) {
+  const tags = (e.tags || []).map(x => stripDiacritics(String(x).toLowerCase()));
+  const desc = stripDiacritics((e.desc || "").toLowerCase());
+  if (src === "flora") {
+    if (tags.some(t => t.includes("english friendly"))) return true;
+    if (desc.includes("titulk")) return true;
+    return false;
+  }
+  if (tags.some(t => t.includes("titulk") || t.includes("expat friendly") || t.includes("en titulky") || t.includes("cz titulky")))
+    return true;
+  if (desc.includes("titulk") || desc.includes("en titulky") || desc.includes("cz titulky")) return true;
+  return false;
+}
+
+function isDjOrConcert(e) {
+  const tags = (e.tags || []).map(x => stripDiacritics(String(x).toLowerCase()));
+  if (tags.some(t => t.includes("dj set") || t === "dj set")) return true;
+  if (tags.some(t => t.includes("koncert") || t === "koncert")) return true;
+  return false;
+}
+
+function passesFilters(e) {
+  const src = e._src || currentFestival;
+  if (currentFestival !== "combined" && e._src && e._src !== currentFestival) return false;
+
+  if (!venueMatches(filters.venueQuery, e.venue || "")) return false;
+
+  if (filters.freeOnly && !e.free) return false;
+
+  if (filters.subtitlesOnly && !hasSubtitlesOrEnglish(e, src)) return false;
+
+  if (filters.ticketStatus !== "all") {
+    if (classifyTicket(e.ticket) !== filters.ticketStatus) return false;
+  }
+
+  if (filters.hideDjConcert && isDjOrConcert(e)) return false;
+
+  return true;
+}
+
+function getVenuesForDatalist() {
+  let list;
+  if (currentFestival === "flora") list = floraData;
+  else if (currentFestival === "dsb") list = dsbData;
+  else list = getCombinedData();
+  const set = new Set();
+  for (const e of list) {
+    if (e.venue) set.add(e.venue);
+  }
+  return [...set].sort((a, b) => stripDiacritics(a).localeCompare(stripDiacritics(b), "cs"));
+}
+
+function escapeAttr(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+}
+
+function populateVenueDatalist() {
+  const dl = document.getElementById("venueDatalist");
+  if (!dl) return;
+  const venues = getVenuesForDatalist();
+  dl.innerHTML = venues.map(v => `<option value="${escapeAttr(v)}"></option>`).join("");
+}
+
+function syncFiltersFromDom() {
+  filters.freeOnly = document.getElementById("filterFree").checked;
+  filters.subtitlesOnly = document.getElementById("filterSubtitles").checked;
+  filters.ticketStatus = document.getElementById("filterTicket").value;
+  filters.hideDjConcert = document.getElementById("filterHideDj").checked;
+  filters.venueQuery = document.getElementById("filterVenue").value.trim();
+}
+
+function resetFiltersDom() {
+  document.getElementById("filterFree").checked = false;
+  document.getElementById("filterSubtitles").checked = false;
+  document.getElementById("filterTicket").value = "all";
+  document.getElementById("filterHideDj").checked = false;
+  document.getElementById("filterVenue").value = "";
+  Object.assign(filters, {
+    freeOnly: false,
+    subtitlesOnly: false,
+    ticketStatus: "all",
+    hideDjConcert: false,
+    venueQuery: ""
+  });
+}
+
+function bindFilterControls() {
+  const rerender = () => {
+    syncFiltersFromDom();
+    renderContent();
+  };
+  ["filterFree", "filterSubtitles", "filterHideDj"].forEach(id => {
+    document.getElementById(id).addEventListener("change", rerender);
+  });
+  document.getElementById("filterTicket").addEventListener("change", rerender);
+  document.getElementById("filterVenue").addEventListener("input", rerender);
+  document.getElementById("filterReset").addEventListener("click", () => {
+    resetFiltersDom();
+    renderContent();
+  });
+}
+
+const dayNamesCz = {
+  nedele: "neděle", pondeli: "pondělí", utery: "úterý", streda: "středa",
+  ctvrtek: "čtvrtek", patek: "pátek", sobota: "sobota"
+};
+const dayAbbr = {
+  nedele: "ne", pondeli: "po", utery: "ut", streda: "st",
+  ctvrtek: "ct", patek: "pa", sobota: "so"
+};
+
+function normalizeDate(dateStr) {
+  return dateStr.replace(/^[a-záéíóúůýčďěňřšťž]+\s+/i, "").trim();
+}
+
+function parseDateSort(dateStr) {
+  const m = dateStr.match(/(\d+)\.\s*(\d+)\./);
+  if (!m) return 9999;
+  return parseInt(m[2]) * 100 + parseInt(m[1]);
+}
+
+function parseStartMinutes(timeStr) {
+  const m = timeStr.match(/(\d{1,2}):(\d{2})/);
+  if (!m) return -1;
+  return parseInt(m[1]) * 60 + parseInt(m[2]);
+}
+
+function parseEndMinutes(timeStr, durStr) {
+  const rangeMatch = timeStr.match(/(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})/);
+  if (rangeMatch) {
+    let end = parseInt(rangeMatch[3]) * 60 + parseInt(rangeMatch[4]);
+    const start = parseInt(rangeMatch[1]) * 60 + parseInt(rangeMatch[2]);
+    if (end <= start) end += 24 * 60;
+    return end;
+  }
+  if (durStr) {
+    const dm = durStr.match(/(\d+)\s*min/);
+    if (dm) {
+      const start = parseStartMinutes(timeStr);
+      if (start >= 0) return start + parseInt(dm[1]);
+    }
+  }
+  const start = parseStartMinutes(timeStr);
+  return start >= 0 ? start + 90 : -1;
+}
+
+function getDays(data) {
+  const seen = new Map();
+  for (const e of data) {
+    const key = e._normDate || e.date;
+    if (!seen.has(key)) seen.set(key, e.day);
+  }
+  return [...seen.entries()].map(([date, day]) => ({ date, day }));
+}
+
+function getCombinedData() {
+  const flora = floraData.map(e => ({...e, _src: "flora", _normDate: normalizeDate(e.date)}));
+  const dsb = dsbData.map(e => ({...e, _src: "dsb", _normDate: e.date}));
+  return [...flora, ...dsb];
+}
+
+function getCombinedDays() {
+  const all = getCombinedData();
+  const seen = new Map();
+  for (const e of all) {
+    if (!seen.has(e._normDate)) seen.set(e._normDate, e.day);
+  }
+  const days = [...seen.entries()].map(([date, day]) => ({ date, day }));
+  days.sort((a, b) => parseDateSort(a.date) - parseDateSort(b.date));
+  return days;
+}
+
+function renderDayNav() {
+  const nav = document.getElementById("dayNav");
+  const activeClass = currentFestival === "flora" ? "active-flora"
+    : currentFestival === "dsb" ? "active-dsb" : "active-combined";
+
+  let days;
+  if (currentFestival === "combined") {
+    days = getCombinedDays();
+  } else {
+    const data = currentFestival === "flora" ? floraData : dsbData;
+    days = getDays(data);
+  }
+
+  let html = `<button class="day-btn all-btn ${currentDay === "all" ? activeClass : ""}" data-day="all">Vse</button>`;
+  for (const d of days) {
+    const label = `${dayAbbr[d.day] || d.day} ${d.date}`;
+    html += `<button class="day-btn ${currentDay === d.date ? activeClass : ""}" data-day="${d.date}">${label}</button>`;
+  }
+  nav.innerHTML = html;
+  nav.querySelectorAll(".day-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      currentDay = btn.dataset.day;
+      renderDayNav();
+      renderContent();
+    });
+  });
+}
+
+function ticketClass(ticket) {
+  if (!ticket) return "";
+  const t = ticket.toLowerCase();
+  if (t.includes("vyprodáno")) return "ticket-sold";
+  if (t.includes("předprodej")) return "ticket-presale";
+  if (t.includes("vstupenk")) return "ticket-avail";
+  if (t.includes("poslední")) return "ticket-avail";
+  return "";
+}
+
+function renderEventCard(e, festival, extraClass) {
+  const src = e._src || festival;
+  const tags = [];
+  for (const t of (e.tags || [])) {
+    tags.push(`<span class="tag">${t}</span>`);
+  }
+  if (src === "flora" && e.free) {
+    tags.push(`<span class="tag free">volny vstup</span>`);
+  }
+  if (e.dur) {
+    tags.push(`<span class="tag">${e.dur}</span>`);
+  }
+  const ticketTag = e.ticket
+    ? `<span class="tag ${ticketClass(e.ticket)}">${e.ticket}</span>` : "";
+
+  const metaParts = [];
+  if (src === "flora" && e.author) metaParts.push(`<span>${e.author}</span>`);
+  if (e.company) metaParts.push(`<span>${e.company}</span>`);
+
+  const badge = festival === "combined"
+    ? `<span class="festival-badge badge-${src}">${src === "flora" ? "Flora Olomouc" : "DSB Brno"}</span>` : "";
+  const conflictBadge = (extraClass || "").includes("conflict")
+    ? `<span class="conflict-icon">!</span>` : "";
+
+  return `
+    <a class="event-card ${extraClass || ""}" href="${e.link}" target="_blank" rel="noopener">
+      ${badge}
+      <div class="event-top">
+        <span class="event-time">${e.time}${conflictBadge}</span>
+        <span class="event-venue">${e.venue}</span>
+      </div>
+      <div class="event-title">${e.title}</div>
+      ${metaParts.length ? `<div class="event-meta">${metaParts.join("")}</div>` : ""}
+      ${e.desc ? `<div class="event-desc">${e.desc}</div>` : ""}
+      ${e.notes ? `<div class="event-notes">${e.notes}</div>` : ""}
+      <div class="event-tags">${tags.join("")}${ticketTag}</div>
+    </a>`;
+}
+
+function detectConflicts(events) {
+  const conflictSet = new Set();
+  for (let i = 0; i < events.length; i++) {
+    for (let j = i + 1; j < events.length; j++) {
+      const a = events[i], b = events[j];
+      if (a._src === b._src) continue;
+      const aStart = parseStartMinutes(a.time);
+      const bStart = parseStartMinutes(b.time);
+      if (aStart < 0 || bStart < 0) continue;
+      const aEnd = parseEndMinutes(a.time, a.dur || "");
+      const bEnd = parseEndMinutes(b.time, b.dur || "");
+      if (aStart < bEnd && bStart < aEnd) {
+        conflictSet.add(i);
+        conflictSet.add(j);
+      }
+    }
+  }
+  return conflictSet;
+}
+
+function renderContent() {
+  if (currentFestival === "combined") {
+    renderCombined();
+    return;
+  }
+
+  const data = (currentFestival === "flora" ? floraData : dsbData).filter(passesFilters);
+  const filtered = currentDay === "all" ? data : data.filter(e => e.date === currentDay);
+  const headingClass = currentFestival === "flora" ? "flora-heading" : "dsb-heading";
+
+  const grouped = new Map();
+  for (const e of filtered) {
+    if (!grouped.has(e.date)) grouped.set(e.date, []);
+    grouped.get(e.date).push(e);
+  }
+
+  let html = "";
+  for (const [date, events] of grouped) {
+    const dayName = events[0].day;
+    html += `<div class="day-section">`;
+    html += `<h2 class="day-heading ${headingClass}">${dayNamesCz[dayName] || dayName} ${date}</h2>`;
+    html += `<div class="events-grid">`;
+    for (const e of events) html += renderEventCard(e, currentFestival, "");
+    html += `</div></div>`;
+  }
+
+  if (!html) html = `<div class="no-events">Zadne akce pro vybrany den.</div>`;
+  document.getElementById("content").innerHTML = html;
+  document.getElementById("stats").textContent =
+    `${filtered.length} akci` + (currentDay === "all" ? "" : ` pro ${currentDay}`);
+}
+
+function renderCombined() {
+  const all = getCombinedData().filter(passesFilters);
+  const filtered = currentDay === "all" ? all : all.filter(e => e._normDate === currentDay);
+
+  const grouped = new Map();
+  for (const e of filtered) {
+    if (!grouped.has(e._normDate)) grouped.set(e._normDate, []);
+    grouped.get(e._normDate).push(e);
+  }
+
+  const sortedDates = [...grouped.keys()].sort((a, b) => parseDateSort(a) - parseDateSort(b));
+
+  let html = `<div class="legend">
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--flora-color)"></div> Flora Olomouc</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--dsb-color)"></div> DSB Brno</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#ff9800"></div> Casovy konflikt</div>
+  </div>`;
+
+  let totalConflicts = 0;
+
+  for (const date of sortedDates) {
+    const events = grouped.get(date);
+    events.sort((a, b) => parseStartMinutes(a.time) - parseStartMinutes(b.time));
+    const dayName = events[0].day;
+    const conflicts = detectConflicts(events);
+    const dayConflicts = conflicts.size;
+    totalConflicts += dayConflicts;
+
+    html += `<div class="day-section">`;
+    html += `<h2 class="day-heading combined-heading">${dayNamesCz[dayName] || dayName} ${date}`;
+    if (dayConflicts > 0) {
+      html += ` <span class="conflict-icon">${dayConflicts / 2 | 0} konflikt${(dayConflicts / 2 | 0) > 1 ? "y" : ""}</span>`;
+    }
+    html += `</h2>`;
+
+    if (dayConflicts > 0) {
+      const floraConf = events.filter((_, i) => conflicts.has(i) && events[i]._src === "flora");
+      const dsbConf = events.filter((_, i) => conflicts.has(i) && events[i]._src === "dsb");
+      const pairs = [];
+      for (let i = 0; i < events.length; i++) {
+        if (!conflicts.has(i)) continue;
+        for (let j = i + 1; j < events.length; j++) {
+          if (!conflicts.has(j)) continue;
+          if (events[i]._src === events[j]._src) continue;
+          const aS = parseStartMinutes(events[i].time), bS = parseStartMinutes(events[j].time);
+          const aE = parseEndMinutes(events[i].time, events[i].dur || "");
+          const bE = parseEndMinutes(events[j].time, events[j].dur || "");
+          if (aS < bE && bS < aE) {
+            const f = events[i]._src === "flora" ? events[i] : events[j];
+            const d = events[i]._src === "dsb" ? events[i] : events[j];
+            pairs.push(`${f.time} ${f.title} (Flora) / ${d.time} ${d.title} (DSB)`);
+          }
+        }
+      }
+      html += `<div class="conflict-summary">Casove konflikty: ${pairs.join("; ")}</div>`;
+    }
+
+    html += `<div class="events-grid">`;
+    for (let i = 0; i < events.length; i++) {
+      const e = events[i];
+      const cardClass = `card-${e._src}${conflicts.has(i) ? " conflict" : ""}`;
+      html += renderEventCard(e, "combined", cardClass);
+    }
+    html += `</div></div>`;
+  }
+
+  if (!html || sortedDates.length === 0) {
+    html = `<div class="no-events">Zadne akce pro vybrany den.</div>`;
+  }
+
+  document.getElementById("content").innerHTML = html;
+  const floraCount = filtered.filter(e => e._src === "flora").length;
+  const dsbCount = filtered.filter(e => e._src === "dsb").length;
+  document.getElementById("stats").textContent =
+    `${filtered.length} akci (Flora: ${floraCount}, DSB: ${dsbCount})` +
+    (currentDay === "all" ? "" : ` pro ${currentDay}`);
+}
+
+document.querySelectorAll(".festival-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".festival-tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    currentFestival = tab.dataset.festival;
+    currentDay = "all";
+    document.getElementById("filterVenue").value = "";
+    filters.venueQuery = "";
+    renderDayNav();
+    populateVenueDatalist();
+    renderContent();
+  });
+});
+
+bindFilterControls();
+populateVenueDatalist();
+renderDayNav();
+renderContent();
